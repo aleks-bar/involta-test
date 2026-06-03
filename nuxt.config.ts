@@ -5,8 +5,13 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   dir: {
-    pages: './src/app/routes',
+    pages: './src/app/pages',
     layouts: './src/app/layouts',
+  },
+
+  alias: {
+    '@shared': '/src/shared',
+    '@entities': '/src/entities',
   },
   compatibilityDate: '2025-07-15',
 
