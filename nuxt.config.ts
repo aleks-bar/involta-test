@@ -1,9 +1,22 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
+
+  modules: ['@nuxt/eslint'],
   devtools: { enabled: true },
+
   dir: {
     pages: './src/app/routes',
-    layouts: './src/app/layouts'
-  }
+    layouts: './src/app/layouts',
+  },
+  compatibilityDate: '2025-07-15',
+
+  eslint: {
+    config: {
+      stylistic: {
+        indent: 2,
+        semi: false,
+        quotes: 'single',
+      },
+    },
+  },
 })
