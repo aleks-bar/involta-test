@@ -7,7 +7,7 @@ const route = useRoute()
     <div>{{ route.meta.h1 ?? 'Главная' }}</div>
   </header>
 
-  <main>
+  <main class="bg-page-bg">
     <slot />
   </main>
 </template>
