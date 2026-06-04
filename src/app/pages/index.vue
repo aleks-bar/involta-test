@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { Container } from '@shared/ui/container'
-import { type Article, ArticleCard } from '@entities/article'
+import { type Article, ArticleCard, ArticlesSources, useArticles } from '@entities/article'
 
 definePageMeta({
   h1: 'Список новостей',
 })
+
+const route = useRoute()
+const activeSource = computed<string | undefined>(() => route.query.source ? route.query.source as string : undefined)
+
+const { getArticles } = useArticles()
 
 const articles: Article[] = [
   {
@@ -36,10 +40,18 @@ const articles: Article[] = [
     source: { url: 'www.mos.ru', type: '' },
   },
 ]
+
+onMounted(() => {
+  getArticles()
+})
 </script>
 
 <template>
-  <container>
+  <div class="container">
+    <div class="py-6 pb-7">
+      <articles-sources :active-source="activeSource" />
+    </div>
+
     <div class="grid grid-cols-2 gap-5">
       <article-card
         v-for="(article, index) in articles"
@@ -47,7 +59,7 @@ const articles: Article[] = [
         v-bind="article"
       />
     </div>
-  </container>
+  </div>
 </template>
 
 <style scoped>
