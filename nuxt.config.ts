@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 
-  modules: ['@nuxt/eslint', '@nuxtjs/tailwindcss'],
+  modules: ['@nuxt/eslint', '@nuxtjs/tailwindcss', 'nuxt-svgo'],
   devtools: { enabled: true },
 
   dir: {
@@ -12,6 +12,7 @@ export default defineNuxtConfig({
   alias: {
     '@shared': '/src/shared',
     '@entities': '/src/entities',
+    '@features': '/src/features',
   },
   compatibilityDate: '2025-07-15',
 
@@ -23,5 +24,9 @@ export default defineNuxtConfig({
         quotes: 'single',
       },
     },
+  },
+
+  svgo: {
+    autoImportPath: './src/app/assets/icons/',
   },
 })
