@@ -9,6 +9,9 @@
       ],
       "@entities/*": [
         "src/entities/*"
+      ],
+      "@features/*": [
+        "src/features/*"
       ]
     }
   }
