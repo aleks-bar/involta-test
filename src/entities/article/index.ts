@@ -16,6 +16,7 @@ export {
 }
 
 export type { Article } from './model/Article'
+export type { ArticlesDisplay } from './model/ArticlesDisplay'
 export type { ArticleSourceType, SourceWithArticles } from './model/ArticlesSource'
 export * from './model/Rss'
 export { comparatorByArticleDateDESC } from './utils/sort'

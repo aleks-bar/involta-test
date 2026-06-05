@@ -1,10 +1,12 @@
 import type { StoreArticlesResponse } from '@entities/article/model/StoreArticlesResponse'
 import { articlesResponseToStoreResponse } from '@entities/article/utils/responseAdapter'
 import { getRss } from '~/server/utils/getRss'
+import type { ArticlesDisplay } from '@entities/article/model/ArticlesDisplay'
 
 export const useArticlesStore = defineStore('articles', () => {
   const { $api } = useNuxtApp()
-  const _loading = ref<boolean>(false)
+  const loading = ref<boolean>(false)
+  const articlesDisplay = ref<ArticlesDisplay>('grid')
   const postsPerPage: number = 4
 
   /**
@@ -12,7 +14,7 @@ export const useArticlesStore = defineStore('articles', () => {
    * @see StoreArticlesResponse
    */
   const getArticles = async (): Promise<StoreArticlesResponse | null> => {
-    _loading.value = true
+    loading.value = true
 
     try {
       const data = import.meta.client ? await $api.articles.getArticles() : await getRss()
@@ -23,13 +25,18 @@ export const useArticlesStore = defineStore('articles', () => {
       return null
     }
     finally {
-      _loading.value = false
+      loading.value = false
     }
   }
 
   return {
-    loading: computed(() => _loading.value),
+    loading,
+    articlesDisplay,
     postsPerPage,
     getArticles,
   }
+}, {
+  persist: {
+    pick: ['articlesDisplay'],
+  },
 })
