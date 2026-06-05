@@ -1,24 +1,43 @@
 <script setup lang="ts">
-const route = useRoute()
+interface Props {
+  disabled?: boolean
+}
 
-const search = ref<string>('')
+defineProps<Props>()
+
+const route = useRoute()
+const searchFromUrl = computed<string | undefined>(
+  () => route.query.search ? decodeURIComponent(route.query.search as string) : undefined,
+)
+
+const search = ref<string>(searchFromUrl.value ?? '')
 
 watchDebounced(() => search.value, (value) => {
   navigateTo({
     ...route,
-    query: { ...route.query, search: value || undefined },
+    query: { ...route.query, search: value ? encodeURIComponent(value) : undefined },
   })
 }, {
   debounce: 500,
 })
+
+watch(() => searchFromUrl.value, (value) => {
+  if (!value && search.value) {
+    search.value = ''
+  }
+})
 </script>
 
 <template>
-  <div class="relative max-w-[320px] shadow-default rounded-sm">
+  <div
+    class="relative max-w-[320px] shadow-default rounded-sm"
+    :class="{ 'opacity-30': disabled }"
+  >
     <input
       v-model="search"
       class="w-full py-2 ps-3 pe-9 rounded-sm"
       aria-label="Поиск статей"
+      :disabled
     >
 
     <SvgoSearch
@@ -27,7 +46,3 @@ watchDebounced(() => search.value, (value) => {
     />
   </div>
 </template>
-
-<style scoped>
-
-</style>
