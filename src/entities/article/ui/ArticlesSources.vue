@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { SourcesItem } from '@entities/article/model/StoreArticlesResponse'
+import { appRouters } from '@shared/const/appRouters'
 
 interface Props {
   sources: SourcesItem[]
@@ -16,7 +17,11 @@ const route = useRoute()
     <NuxtLink
       class="articles-source"
       :class="{ 'articles-source--active': !activeSource }"
-      to="/"
+      :to="{
+        ...route,
+        path: appRouters.Home,
+        query: { ...route.query, source: undefined, page: undefined },
+      }"
     >
       Все
     </NuxtLink>
