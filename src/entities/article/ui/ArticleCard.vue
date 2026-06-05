@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import type { Article } from '../model/Article'
+import { dateISOtoShort } from '@shared/utils/date'
 
 defineProps<Article>()
 </script>
 
 <template>
-  <article class="flex flex-col shadow-md pt-7 px-7 pb-4 rounded-sm">
+  <article class="flex flex-col shadow-default pt-7 px-7 pb-4 rounded-sm">
     <span class="block mb-6 text-lg font-bold text-accent leading-tight">{{ title }}</span>
-    <span class="block mb-5 text-sm">{{ description }}</span>
+    <span
+      v-if="description"
+      class="block mb-5 text-sm"
+    >
+      {{ description }}
+    </span>
 
     <NuxtLink
       class="w-fit mb-5 inline-block text-sm underline text-accent"
@@ -18,14 +24,14 @@ defineProps<Article>()
 
     <footer class="text-gray flex items-center justify-between  ">
       <a
-        href="www.mos.ru"
+        :href="source.url"
         target="_blank"
         rel="noopener noreferrer"
       >
-        {{ source.url }}
+        {{ source.label }}
       </a>
 
-      <span>{{ date }}</span>
+      <span>{{ dateISOtoShort(date) }}</span>
     </footer>
   </article>
 </template>
