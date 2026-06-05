@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ArticlesRefresh } from '@features/articles-refresh'
 import { ArticlesSearch } from '@features/articles-search'
+import { useArticlesStore } from '@entities/article'
 
 const route = useRoute()
+const articlesStore = useArticlesStore()
 </script>
 
 <template>
@@ -14,10 +16,10 @@ const route = useRoute()
             {{ route.meta.h1 ?? 'Главная' }}
           </h1>
 
-          <articles-refresh />
+          <articles-refresh :disabled="articlesStore.loading" />
         </div>
 
-        <articles-search />
+        <articles-search :disabled="articlesStore.loading" />
       </div>
     </div>
   </header>
