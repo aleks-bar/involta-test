@@ -30,7 +30,7 @@ watch(() => searchFromUrl.value, (value) => {
 
 <template>
   <div
-    class="relative max-w-[320px] shadow-default rounded-sm"
+    class="relative shadow-default rounded-sm"
     :class="{ 'opacity-30': disabled }"
   >
     <input
