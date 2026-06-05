@@ -10,6 +10,7 @@ import {
 } from '@entities/article'
 
 import { Pagination } from '@shared/ui/Pagination'
+import { ArticlesDisplayChange } from '@features/artilces-display-change'
 
 definePageMeta({
   h1: 'Список новостей',
@@ -62,15 +63,22 @@ const articles = computed(() => getArticlesByPage(articlesBySearch.value, curren
         :active-source="activeSource"
         :sources="sources"
       />
-      <div>display changer</div>
+      <articles-display-change />
     </div>
 
     <template v-if="articles.length">
-      <div class="grid grid-cols-2 gap-5">
+      <div
+        class="gap-5"
+        :class="{
+          'grid lg:grid-cols-2': articlesStore.articlesDisplay === 'grid',
+          'flex flex-col': articlesStore.articlesDisplay === 'list',
+        }"
+      >
         <article-card
           v-for="(article, index) in articles"
           :key="index"
           v-bind="article"
+          :with-image="articlesStore.articlesDisplay === 'list'"
         />
       </div>
 
@@ -91,7 +99,3 @@ const articles = computed(() => getArticlesByPage(articlesBySearch.value, curren
     </div>
   </div>
 </template>
-
-<style scoped>
-
-</style>
