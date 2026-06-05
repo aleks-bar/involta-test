@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ArticlesRefresh } from '@features/articles-refresh'
+import { ArticlesSearch } from '@features/articles-search'
 
 const route = useRoute()
 </script>
@@ -7,7 +8,7 @@ const route = useRoute()
 <template>
   <header>
     <div class="container">
-      <div class="border-b py-9 border-gray-border">
+      <div class="border-b py-9 border-gray-border flex items-center justify-between">
         <div class="flex items-center gap-7">
           <h1 class="text-4xl font-bold">
             {{ route.meta.h1 ?? 'Главная' }}
@@ -15,6 +16,8 @@ const route = useRoute()
 
           <articles-refresh />
         </div>
+
+        <articles-search />
       </div>
     </div>
   </header>
