@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
     'nuxt-svgo',
     '@vueuse/nuxt',
   ],
