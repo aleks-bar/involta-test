@@ -28,7 +28,7 @@ const route = useRoute()
       :class="{ 'articles-source--active': activeSource === source.type }"
       :to="{
         ...route,
-        query: { ...route.query, source: source.type },
+        query: { ...route.query, source: source.type, page: undefined },
       }"
     >
       {{ source.label }}
