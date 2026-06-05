@@ -7,6 +7,10 @@ export const useArticlesStore = defineStore('articles', () => {
   const _loading = ref<boolean>(false)
   const postsPerPage: number = 4
 
+  /**
+   * @description Получение подготовленных rss данных
+   * @see StoreArticlesResponse
+   */
   const getArticles = async (): Promise<StoreArticlesResponse | null> => {
     _loading.value = true
 
