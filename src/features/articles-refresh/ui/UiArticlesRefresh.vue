@@ -1,7 +1,12 @@
 <script setup lang="ts">
-import { useArticlesStore } from '@entities/article'
 import { appRouters } from '@shared/const/appRouters'
+import { useArticlesStore } from '@entities/article'
 
+interface Props {
+  disabled?: boolean
+}
+
+defineProps<Props>()
 const articlesStore = useArticlesStore()
 
 const refresh = async () => {
@@ -13,7 +18,8 @@ const refresh = async () => {
 <template>
   <button
     class="button-refresh"
-    :disabled="articlesStore.loading"
+    :class="{ 'opacity-30': disabled }"
+    :disabled
     @click="refresh"
   >
     <SvgoRefresh
