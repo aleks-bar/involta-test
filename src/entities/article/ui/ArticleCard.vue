@@ -10,14 +10,16 @@ defineProps<Article>()
     <span class="block mb-6 text-lg font-bold text-accent leading-tight">{{ title }}</span>
     <span
       v-if="description"
-      class="block mb-5 text-sm"
+      class="mb-5 text-sm line-clamp-2"
     >
       {{ description }}
     </span>
 
     <NuxtLink
       class="w-fit mb-5 inline-block text-sm underline text-accent"
-      to="/"
+      :to="url"
+      target="_blank"
+      rel="noopener noreferrer"
     >
       Подроблее
     </NuxtLink>
