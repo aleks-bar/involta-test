@@ -5,6 +5,7 @@ import { getRss } from '~/server/utils/getRss'
 export const useArticlesStore = defineStore('articles', () => {
   const { $api } = useNuxtApp()
   const _loading = ref<boolean>(false)
+  const postsPerPage: number = 4
 
   const getArticles = async (): Promise<StoreArticlesResponse | null> => {
     _loading.value = true
@@ -24,6 +25,7 @@ export const useArticlesStore = defineStore('articles', () => {
 
   return {
     loading: computed(() => _loading.value),
+    postsPerPage,
     getArticles,
   }
 })
