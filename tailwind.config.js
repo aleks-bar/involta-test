@@ -29,6 +29,7 @@ export default {
         accent: '#0029FF',
         gray: '#DCDCDC',
         ['gray-border']: '#E5E5E5',
+        ['gray-icon']: '#C4C4C4',
       },
 
       boxShadow: {
