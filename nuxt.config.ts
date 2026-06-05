@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     'nuxt-svgo',
+    '@vueuse/nuxt',
   ],
   devtools: { enabled: true },
 
