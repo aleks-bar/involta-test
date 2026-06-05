@@ -1,12 +1,11 @@
-export interface ArticleSource {
-  url: string
-  type: string
-}
-
 export interface Article {
   title: string
-  description: string
+  description?: string
   date: string
+  image: string
   url: string
-  source: ArticleSource
+  source: {
+    label: string
+    url: string
+  }
 }
