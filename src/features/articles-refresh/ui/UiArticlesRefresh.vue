@@ -10,7 +10,7 @@ defineProps<Props>()
 const articlesStore = useArticlesStore()
 
 const refresh = async () => {
-  await articlesStore.getArticles()
+  await articlesStore.articlesRefresh()
   await navigateTo(appRouters.Home)
 }
 </script>

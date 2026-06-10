@@ -30,7 +30,8 @@ const currentPage = computed<number>(() => {
   return page
 })
 
-const { data } = await useAsyncData('articles-data', () => articlesStore.getArticles())
+const { data, refresh } = await useAsyncData('articles-data', () => articlesStore.getArticles())
+articlesStore.setArticlesRefreshHandler(refresh)
 
 /** Получение списка Article относительно выбранного ресурса */
 const articlesList = computed<Article[]>(() => {

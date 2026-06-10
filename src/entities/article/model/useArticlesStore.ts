@@ -9,6 +9,16 @@ export const useArticlesStore = defineStore('articles', () => {
   const articlesDisplay = ref<ArticlesDisplay>('grid')
   const postsPerPage: number = 4
 
+  let _articlesRefresh: () => Promise<void> | undefined
+
+  const setArticlesRefreshHandler = (handler: () => Promise<void>) => {
+    _articlesRefresh = handler
+  }
+
+  const articlesRefresh = async () => {
+    await _articlesRefresh?.()
+  }
+
   /**
    * @description Получение подготовленных rss данных
    * @see StoreArticlesResponse
@@ -34,6 +44,8 @@ export const useArticlesStore = defineStore('articles', () => {
     articlesDisplay,
     postsPerPage,
     getArticles,
+    articlesRefresh,
+    setArticlesRefreshHandler,
   }
 }, {
   persist: {
