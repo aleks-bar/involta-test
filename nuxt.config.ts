@@ -21,6 +21,9 @@ export default defineNuxtConfig({
     '@entities': '/src/entities',
     '@features': '/src/features',
   },
+  experimental: {
+    appManifest: false,
+  },
   compatibilityDate: '2025-07-15',
 
   eslint: {
